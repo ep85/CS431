@@ -1,6 +1,6 @@
-angular.module('controllers', [])
+var app = angular.module('controllers', []);
 
-.controller('TodoCtrl', function($scope, $timeout, $ionicModal, Projects, $ionicSideMenuDelegate) {
+app.controller('TodoCtrl', function($scope, $timeout, $ionicModal, Projects, $ionicSideMenuDelegate) {
 
     // A utility function for creating a new project
     // with the given projectTitle
