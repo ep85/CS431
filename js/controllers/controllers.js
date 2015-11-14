@@ -4,7 +4,7 @@ app.controller('MainCtrl', function($scope) {
     $scope.test = 'hey';
 });
 
-app.controller('LoginCtrl', function($scope, $http) {
+app.controller('LoginCtrl', function($scope, $http, $location) {
 
     $scope.submit = function() {
         // HTTP Post
@@ -18,6 +18,10 @@ app.controller('LoginCtrl', function($scope, $http) {
         }).then(function(response) {    // success callback
             console.log(response);
             $scope.message = response.data;
+
+            if ($scope.message === 'true') {
+                $location.path('/dashboard');
+            }
         }, function(err) {          //failure callback
             console.log(err);
         })
