@@ -5,6 +5,7 @@ $user="root";
 $datapassword="password";
 $database="taskmanagement";
 $myArray=array();
+session_start();
 
 ini_set('display_errors', 1);
 error_reporting(E_ALL ^ E_NOTICE);
@@ -17,11 +18,13 @@ $request=json_decode($postdata);
 
 $conn = new mysqli($server, $user, $datapassword, $database);
 
-if($result = $conn->query("SELECT email, password FROM user where email='$username'")){
+if($result = $conn->query("SELECT email, password, id FROM user where email='$username'")){
 	$row = $result->fetch_array(MYSQLI_ASSOC);
 	echo $row['username'];
 	if($row["password"]==$password && !empty($password)){
 			echo "true";
+			$_SESSION["user"] = $username;
+			$_SESSION["userid"] = $row["id"];
 	}else{
 			echo "invalid";
 	}
@@ -29,7 +32,6 @@ if($result = $conn->query("SELECT email, password FROM user where email='$userna
 else{
 	echo "invalid";
 }
-
 $conn->close();
 
 ?>

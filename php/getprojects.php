@@ -5,24 +5,18 @@ $user="root";
 $datapassword="password";
 $database="taskmanagement";
 $myArray=array();
-
-
-$postdata= file_get_contents("php://input");
-$request=json_decode($postdata);
-@$username= $request->username;
-@$password=$request->password;
+session_start();
+$username=$_SESSION["user"];
+$userid=$_SESSION["userid"];
 
 
 $conn = new mysqli($server, $user, $datapassword, $database);
-
 if(!$conn) {
 	echo "error";
 	exit;
 }
 
-$result = $conn->query("SELECT email, password FROM user " );
-
-
+$result = $conn->query("SELECT p.title, p.description FROM projects p,project_to_user ptu  where ptu.user_id=$userid " );
 while($row = $result->fetch_array(MYSQLI_ASSOC)) {
     $myArray[]=$row;
 }

@@ -28,6 +28,14 @@ app.controller('LoginCtrl', function($scope, $http, $location) {
     }
 });
 app.controller('DashboardController', function($scope, $http) {
-
+    $http({
+            method: 'POST',
+            url: 'php/getprojects.php',
+        }).then(function(response) {    // success callback
+            console.log(response);
+            $scope.message = response.data;
+        }, function(err) {          //failure callback
+            console.log(err);
+        })
 
 });
