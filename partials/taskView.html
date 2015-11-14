@@ -1,3 +1,12 @@
 <div class="page-header">
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
 
+            <uib-accordion close-others="false">
+                <uib-accordion-group ng-repeat="task in tasks track by $index" heading="{{task.title}}">
+                    <p>{{task.description}}</p>
+                </uib-accordion-group>
+            </uib-accordion>
+        </div>
+    </div>
 </div>

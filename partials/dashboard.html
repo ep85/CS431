@@ -1,6 +1,13 @@
-<div class="container">
+<div class="page-header">
     <div class="row">
-        
+        <div class="col-sm-8 col-sm-offset-2">
+
+            <uib-accordion close-others="false">
+                <uib-accordion-group ng-repeat="project in projects track by $index" heading="{{project.title}}">
+                    <a href="#dashboard/{{project.id}}">Click here to view tasks</a>
+                    <p>{{project.description}}</p>
+                </uib-accordion-group>
+            </uib-accordion>
+        </div>
     </div>
 </div>
-    

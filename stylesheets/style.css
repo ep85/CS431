@@ -1,3 +1,5 @@
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
 #login p {
     margin: 10px 0 0 0;
 }

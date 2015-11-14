@@ -19,5 +19,9 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
             templateUrl: 'partials/register.html',
             controller: 'RegisterCtrl'
         })
+        .when('/dashboard/:projectId', {
+            templateUrl: 'partials/taskView.html',
+            controller: 'TaskCtrl'
+        })
         .otherwise({redirectTo: '/login'})
 }]);
