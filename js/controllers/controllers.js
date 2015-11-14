@@ -17,7 +17,7 @@ app.controller('LoginCtrl', function($scope, $http) {
             }
         }).then(function(response) {    // success callback
             console.log(response);
-            $scope.names =response.data;
+            $scope.message = response.data;
         }, function(err) {          //failure callback
             console.log(err);
         })

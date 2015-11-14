@@ -4,40 +4,42 @@
             <h3 class="text-center">Login</h3>
         </div>
     </div>
-      <div class="container">
-    <div class="row">
-        <div class="col-sm-4 col-sm-offset-4">
-            <form ng-submit="submit()">
-                <div class="form-group">
-                    <label>Username</label>
-                    <input type="text" ng-model="username" class="form-control" placeholder="Username" required>
-                </div>
-                <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" ng-model="password" class="form-control" placeholder="Password" required>
-                </div>
-                <div class="row">
-                    <div class="col-xs-12">
-                        <button type="submit" class="btn btn-default col-xs-4 col-xs-offset-4">Login</button>
-                    </div>
-                </div>
-            </form>
-            <br>
-            <div ng-if="names == 'invalid'" class="alert alert-danger" role="alert">
-              <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-              <span class="sr-only">Error:</span>
-              Enter a valid email address
+
+    <div class="container">
+
+        <div class="row">
+            <div ng-if="message == 'invalid'" class="alert alert-danger col-sm-4 col-sm-offset-4" role="alert">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span class="sr-only">Error:</span>
+                Enter a valid email address
             </div>
+        </div>
 
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-4">
+                <form ng-submit="submit()">
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" ng-model="username" class="form-control" placeholder="Username" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" ng-model="password" class="form-control" placeholder="Password" required>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <button type="submit" class="btn btn-default col-xs-4 col-xs-offset-4">Login</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-8 col-sm-4 col-xs-offset-2 col-sm-offset-4">
+                <p class="text-center">Don't have an account?</p>
+                <a ng-href="#register" class="btn btn-default col-xs-4 col-xs-offset-4">Sign up</a>
+            </div>
         </div>
     </div>
-
-
-    <div class="row">
-        <div class="col-xs-8 col-sm-4 col-xs-offset-2 col-sm-offset-4">
-            <p class="text-center">Don't have an account?</p>
-            <a ng-href="#register" class="btn btn-default col-xs-4 col-xs-offset-4">Sign up</a>
-        </div>
-    </div>
-</div>
 </div>
