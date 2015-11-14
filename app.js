@@ -12,6 +12,10 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
             templateUrl: 'partials/login.html',
             controller: 'LoginCtrl'
         })
+         .when('/dashboard', {
+            templateUrl: 'partials/dashboard.html',
+            controller: 'DashboardController'
+        })
         .when('/register', {
             templateUrl: 'partials/register.html',
             controller: 'RegisterCtrl'
