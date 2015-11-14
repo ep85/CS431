@@ -6,7 +6,6 @@ var app = angular.module('todo', [
 ]);
 
 app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
-    $locationProvider.html5Mode(true);
     $routeProvider
         .when('/login', {
             templateUrl: 'partials/login.html',

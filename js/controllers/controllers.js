@@ -14,8 +14,7 @@ app.controller('LoginCtrl', function($scope, $http) {
             data: {
                 username: $scope.username,
                 password: $scope.password
-            },
-
+            }
         }).then(function(response) {    // success callback
             console.log(response);
             $scope.names =response.data;
