@@ -58,18 +58,23 @@ app.controller('DashboardController', function($scope, $http, $modal) {
         });
     };
 
-    $scope.deleteProject = function(id) {
-        $http({
-            method: 'POST',
-            url: 'php/deleteproject.php',
-            data: {
-                projectId: id
+    $scope.editProject = function(project) {
+        var modalInstance = $modal.open({
+            animation: true,
+            templateUrl: 'editProjectModal.html',
+            controller: 'EditProjectModalCtrl',
+            resolve: {
+                project: function() {
+                    return project;
+                }
             }
-        }).then(function(response) {
-            console.log(response);
-        }, function(err) {
-            console.log(err);
-        })
+        });
+
+        modalInstance.result.then(function () {
+            onLoad();
+        }, function () {
+            console.log('Modal dismissed at: ' + new Date());
+        });
     }
 });
 
@@ -86,6 +91,49 @@ app.controller('NewProjectModalCtrl', function($scope, $http, $modalInstance) {
                 description: $scope.description
             }
         }, function(response) {
+            console.log(response);
+        }, function(err) {
+            console.log(err);
+        });
+
+        $modalInstance.close();
+    };
+
+    $scope.cancel = function() {
+        $modalInstance.dismiss('cancel');
+    }
+});
+
+app.controller('EditProjectModalCtrl', function($scope, $http, $modalInstance, project) {
+    $scope.title = project.title;
+    $scope.description = project.description;
+
+    $scope.update = function() {
+        if (!$scope.title) return;
+
+        $http({
+            method: 'POST',
+            url: 'php/updateProject.php',
+            data: {
+                title: $scope.title,
+                description: $scope.description
+            }
+        }, function(response) {
+            console.log(response);
+        }, function(err) {
+            console.log(err);
+        });
+        $modalInstance.close();
+    };
+
+    $scope.deleteProject = function() {
+        $http({
+            method: 'POST',
+            url: 'php/deleteproject.php',
+            data: {
+                projectId: project.id
+            }
+        }).then(function(response) {
             console.log(response);
         }, function(err) {
             console.log(err);
@@ -137,6 +185,20 @@ app.controller('TaskCtrl', function($scope, $routeParams, $http, $modal) {
             console.log('Modal dismissed at: ' + new Date());
         });
     };
+
+    $scope.deleteTask = function(id) {
+        $http({
+            method: 'POST',
+            url: 'php/deletetask.php',
+            data: {
+                taskId: id
+            }
+        }).then(function(response) {
+            console.log(response);
+        }, function(err) {
+            console.log(err);
+        })
+    }
 
     $scope.getSubTasks = function(index, taskId) {
         $http({
