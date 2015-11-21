@@ -65,10 +65,10 @@ app.controller('DashboardController', function($scope, $http, $modal) {
             data: {
                 projectId: id
             }
-        }).then(function(resopnse) {
+        }).then(function(response) {
             console.log(response);
         }, function(err) {
-            consoel.log(err);
+            console.log(err);
         })
     }
 });
