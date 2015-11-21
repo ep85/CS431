@@ -110,7 +110,12 @@ app.controller('TaskCtrl', function($scope, $routeParams, $http, $modal) {
             animation: true,
             templateUrl: 'newTaskModal.html',
             controller: 'NewTaskModalCtrl',
-            size: size
+            size: size,
+            resolve: {
+                projectId: function() {
+                    return projectId;
+                }
+            }
         });
 
         modalInstance.result.then(function () {
@@ -121,7 +126,7 @@ app.controller('TaskCtrl', function($scope, $routeParams, $http, $modal) {
     }
 });
 
-app.controller('NewTaskModalCtrl', function ($scope, $http, $modalInstance) {
+app.controller('NewTaskModalCtrl', function ($scope, $http, $modalInstance, projectId) {
 
     $scope.ok = function() {
         if (!$scope.title) return;
@@ -130,6 +135,7 @@ app.controller('NewTaskModalCtrl', function ($scope, $http, $modalInstance) {
             method: 'POST',
             url: 'php/inserttask.php',
             data: {
+                projectId: projectId,
                 title: $scope.title,
                 description: $scope.description
             }
