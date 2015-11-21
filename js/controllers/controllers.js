@@ -10,7 +10,7 @@ app.controller('LoginCtrl', function($scope, $http, $location) {
         // HTTP Post
         $http({
             method: 'POST',
-            url: 'php/login.php',
+            url: '/php/login.php',
             data: {
                 username: $scope.username,
                 password: $scope.password
@@ -27,38 +27,66 @@ app.controller('LoginCtrl', function($scope, $http, $location) {
         })
     }
 });
-app.controller('DashboardController', function($scope, $http) {
+app.controller('DashboardController', function($scope, $http, $modal) {
     $http({
-            method: 'POST',
-            url: 'php/getprojects.php',
-        }).then(function(response) {    // success callback
-            console.log(response);
-            $scope.projects = response.data;
-        }, function(err) {          //failure callback
-            console.log(err);
+        method: 'POST',
+        url: '/php/getprojects.php'
+    }).then(function(response) {    // success callback
+        console.log(response);
+        $scope.projects = response.data;
+    }, function(err) {          //failure callback
+        console.log(err);
+    });
+
+    $scope.newProject = function(size) {
+        var modalInstance = $modal.open({
+            animation: true,
+            templateUrl: 'newProjectModal.html',
+            controller: 'NewProjectModalCtrl',
+            size: size
         });
-    //$scope.projects = [
-    //    {
-    //        id: 1,
-    //        title: 'Project1',
-    //        description: 'Get everything finished'
-    //    },
-    //    {
-    //        id: 2,
-    //        title: 'Project2',
-    //        description: 'Get nothing finishd'
-    //    },
-    //    {
-    //        id: 3,
-    //        title: 'Project3',
-    //        description: 'Get something done?'
-    //    }
-    //]
+    }
 });
 
-app.controller('TaskCtrl', function($scope, $routeParams) {
+app.controller('NewProjectModalCtrl', function($scope, $http, $modalInstance) {
+
+    $scope.ok = function() {
+        $http({
+            method: 'POST',
+            url: '/php/insertproject.php',
+            data: {
+                title: $scope.title,
+                description: $scope.description
+            }
+        }, function(response) {
+            console.log(response);
+        }, function(err) {
+            console.log(err);
+        });
+
+        $modalInstance.close();
+    };
+
+    $scope.cancel = function() {
+        $modalInstance.dismiss('cancel');
+    }
+});
+
+app.controller('TaskCtrl', function($scope, $routeParams, $http) {
     var projectId = $routeParams.projectId;
     $scope.tasks = [];
+
+    //$http({
+    //    method: 'POST',
+    //    url: 'php/gettasks.php',
+    //    data: {
+    //        projectId: projectId
+    //    }
+    //}).then(function(response) {
+    //
+    //}, function(err) {
+    //
+    //});
 
     var all = [
         {
