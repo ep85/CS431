@@ -11,6 +11,8 @@ $userid=$_SESSION["userid"];
 
 $postdata= file_get_contents("php://input");
 $request=json_decode($postdata);
+@$title=$request->title;
+@$description=$request->description;
 @$projectId=$request->projectId;
 
 $conn = new mysqli($server, $user, $datapassword, $database);
@@ -19,9 +21,7 @@ if(!$conn) {
 	exit;
 }
 
-$result = $conn->query("DELETE FROM projects where id='$projectId'" );
-$result = $conn->query("DELETE FROM project_to_user where project_id='$projectId'" );
-$result = $conn->query("DELETE FROM task where project_id='$projectId'" );
+$result = $conn->query("UPDATE projects SET title='$title', description='$description'" );
 
 $conn->close();
 
