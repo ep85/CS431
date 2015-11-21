@@ -16,7 +16,7 @@ $postdata= file_get_contents("php://input");
 $request=json_decode($postdata);
 @$title= $request->title;
 @$description=$request->description;
-@$projectId=$request->description;
+@$projectId=$request->projectId;
 
 $conn = new mysqli($server, $user, $datapassword, $database);
 if(!$conn) {
