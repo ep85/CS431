@@ -10,7 +10,7 @@ app.controller('LoginCtrl', function($scope, $http, $location) {
         // HTTP Post
         $http({
             method: 'POST',
-            url: '/php/login.php',
+            url: 'php/login.php',
             data: {
                 username: $scope.username,
                 password: $scope.password
@@ -30,7 +30,7 @@ app.controller('LoginCtrl', function($scope, $http, $location) {
 app.controller('DashboardController', function($scope, $http, $modal) {
     $http({
         method: 'POST',
-        url: '/php/getprojects.php'
+        url: 'php/getprojects.php'
     }).then(function(response) {    // success callback
         console.log(response);
         $scope.projects = response.data;
@@ -53,7 +53,7 @@ app.controller('NewProjectModalCtrl', function($scope, $http, $modalInstance) {
     $scope.ok = function() {
         $http({
             method: 'POST',
-            url: '/php/insertproject.php',
+            url: 'php/insertproject.php',
             data: {
                 title: $scope.title,
                 description: $scope.description
