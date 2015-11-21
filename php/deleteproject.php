@@ -11,8 +11,7 @@ $userid=$_SESSION["userid"];
 
 $postdata= file_get_contents("php://input");
 $request=json_decode($postdata);
-@$title= $request->title;
-@$taskId=$request->taskId;
+@$projectId=$request->projectId;
 
 $conn = new mysqli($server, $user, $datapassword, $database);
 if(!$conn) {
@@ -20,10 +19,13 @@ if(!$conn) {
 	exit;
 }
 
-$result = $conn->query("INSERT INTO subtask ( title ) VALUES ( '$title')" );
-$lastid=mysqli_insert_id($conn);
-$result = $conn->query("INSERT INTO task_to_subtask (task_id, subtask_id) VALUES ('$taskId', '$lastid')" );
-
+$result = $conn->query("DELETE FROM projects where id='$projectId'" );
+$result = $conn->query("DELETE FROM project_to_user where project_id='$projectId'" );
 
 $conn->close();
 
+
+
+
+
+?>

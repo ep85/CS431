@@ -18,21 +18,16 @@ $request=json_decode($postdata);
 
 
 $conn = new mysqli($server, $user, $datapassword, $database);
-
-if($result = $conn->query("SELECT email, password, id FROM user where email='$username'")){
-	$row = $result->fetch_array(MYSQLI_ASSOC);
-	echo $row['username'];
-	if($row["password"]==$password && !empty($password)){
-			echo "true";
-			$_SESSION["user"] = $username;
-			$_SESSION["userid"] = $row["id"];
-	}else{
-			echo "invalid";
-	}
+$check= $conn->query("SELECT email from user where email='$username'");
+if($check !=NULL){
+	echo "USER ALREADY EXISTS"
 }
 else{
-	echo "invalid";
+	$result = $conn->query("INSERT INTO user (email, password) VALUES ( '$username' ,'$password')" );
+	echo "SUCCESS USER CREATED"
 }
+
+
 $conn->close();
 
 ?>
