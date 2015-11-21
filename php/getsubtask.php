@@ -22,7 +22,7 @@ if(!$conn) {
 	exit;
 }
 
-$result = $conn->query("SELECT s.title FROM subtask s, task_to_subtask tts  where tts.task_id='$taskId' and tts.subtask_id=s.id " );
+$result = $conn->query("SELECT s.id, s.title FROM subtask s, task_to_subtask tts  where tts.task_id='$taskId' and tts.subtask_id=s.id " );
 while($row = $result->fetch_array(MYSQLI_ASSOC)) {
     $myArray[]=$row;
 }
