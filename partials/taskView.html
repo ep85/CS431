@@ -9,10 +9,16 @@
 
     <div class="row">
         <div class="col-sm-8 col-sm-offset-2">
-
             <uib-accordion close-others="false">
-                <uib-accordion-group ng-repeat="task in tasks track by $index" heading="{{task.title}}">
+                <uib-accordion-group ng-repeat="task in tasks track by $index" heading="{{task.title}}" ng-click="getSubTasks($index, task.id)">
+                    <button class="btn btn-primary pull-right" ng-click="newSubTask($index, task.id)">Add sub tasks</button>
                     <p>{{task.description}}</p>
+
+                    <ul>
+                        <li ng-repeat="subtask in task.subtasks track by $index">
+                            {{subtask.title}}
+                        </li>
+                    </ul>
                 </uib-accordion-group>
             </uib-accordion>
         </div>
@@ -38,5 +44,23 @@
         <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
     </div>
 </script>
+
+<script type="text/ng-template" id="newSubTaskModal.html">
+    <div class="modal-header">
+        <h3 class="modal-title text-center">New Task</h3>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label>Title</label>
+            <input class="form-control" type="text" ng-model="title" placeholder="Title">
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+    </div>
+</script>
+
+
 
 
