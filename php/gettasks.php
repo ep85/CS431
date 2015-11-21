@@ -22,7 +22,7 @@ if(!$conn) {
 	exit;
 }
 
-$result = $conn->query("SELECT t.title, t.description FROM task t  where t.project_id='$projectId' " );
+$result = $conn->query("SELECT t.id, t.title, t.description FROM task t  where t.project_id='$projectId' " );
 while($row = $result->fetch_array(MYSQLI_ASSOC)) {
     $myArray[]=$row;
 }
