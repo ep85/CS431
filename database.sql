@@ -1,4 +1,5 @@
 -- phpMyAdmin SQL Dump
+-- version 4.2.5
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:8889
