@@ -7,3 +7,7 @@
 textarea {
     resize: vertical;
 }
+
+#dashboard .header {
+    margin-bottom: 10px;
+}

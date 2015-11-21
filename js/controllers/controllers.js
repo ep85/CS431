@@ -28,15 +28,20 @@ app.controller('LoginCtrl', function($scope, $http, $location) {
     }
 });
 app.controller('DashboardController', function($scope, $http, $modal) {
-    $http({
-        method: 'POST',
-        url: 'php/getprojects.php'
-    }).then(function(response) {    // success callback
-        console.log(response);
-        $scope.projects = response.data;
-    }, function(err) {          //failure callback
-        console.log(err);
-    });
+
+    onLoad();
+
+    function onLoad() {
+        $http({
+            method: 'POST',
+            url: 'php/getprojects.php'
+        }).then(function(response) {    // success callback
+            console.log(response);
+            $scope.projects = response.data;
+        }, function(err) {          //failure callback
+            console.log(err);
+        });
+    }
 
     $scope.newProject = function(size) {
         var modalInstance = $modal.open({
@@ -45,12 +50,20 @@ app.controller('DashboardController', function($scope, $http, $modal) {
             controller: 'NewProjectModalCtrl',
             size: size
         });
+
+        modalInstance.result.then(function () {
+            onLoad();
+        }, function () {
+            console.log('Modal dismissed at: ' + new Date());
+        });
     }
 });
 
 app.controller('NewProjectModalCtrl', function($scope, $http, $modalInstance) {
 
     $scope.ok = function() {
+        if (!$scope.title) return;
+
         $http({
             method: 'POST',
             url: 'php/insertproject.php',
