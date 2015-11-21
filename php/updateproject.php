@@ -21,7 +21,7 @@ if(!$conn) {
 	exit;
 }
 
-$result = $conn->query("UPDATE projects SET title='$title', description='$description'" );
+$result = $conn->query("UPDATE projects SET title='$title', description='$description' where id='$projectId'" );
 
 $conn->close();
 
