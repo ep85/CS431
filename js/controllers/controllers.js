@@ -107,7 +107,7 @@ app.controller('NewProjectModalCtrl', function($scope, $http, $modalInstance) {
 app.controller('EditProjectModalCtrl', function($scope, $http, $modalInstance, project) {
     $scope.title = project.title;
     $scope.description = project.description;
-
+    console.log(project.id);
     $scope.update = function() {
         if (!$scope.title) return;
 
@@ -115,6 +115,7 @@ app.controller('EditProjectModalCtrl', function($scope, $http, $modalInstance, p
             method: 'POST',
             url: 'php/updateProject.php',
             data: {
+                projectId: project.id,
                 title: $scope.title,
                 description: $scope.description
             }
