@@ -23,11 +23,10 @@ if(!$conn) {
 	exit;
 }
 
-$result = $conn->query("INSERT INTO projects (title, description) VALUES ('$title', '$description')" );
-//$lastid=mysqli_insert_id();
-//$result = $conn->query("INSERT INTO project_to_user (project_id, user_id, owner) VALUES ('$lastid', '$username', '1')" );
+$result = $conn->query("INSERT INTO projects (title, description) VALUES ('asd', 'asd')" );
+$lastid=mysqli_insert_id($conn);
+$result = $conn->query("INSERT INTO project_to_user (project_id, user_id, owner) VALUES ('$lastid', '$userid', '1')" );
 
-//echo ($title . $description);
 $conn->close();
 
 
