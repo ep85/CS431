@@ -8,6 +8,6 @@ textarea {
     resize: vertical;
 }
 
-#dashboard .header {
+.header {
     margin-bottom: 10px;
 }
