@@ -5,7 +5,7 @@ header("Content-Type: application/json; charset=UTF-8");
 
 $server="localhost";
 $user="root";
-$password="password";
+$password="user1";
 $database="taskmanagement";
 
 $result = $conn->query("SELECT p.title, p.description FROM projects p,project_to_user ptu  where ptu.user_id=$userid " );

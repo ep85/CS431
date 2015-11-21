@@ -1,7 +1,7 @@
 <?php
 
 $server="localhost";
-$user="root";
+$user="user1";
 $datapassword="password";
 $database="taskmanagement";
 $myArray=array();
