@@ -16,7 +16,7 @@ if(!$conn) {
 	exit;
 }
 
-$result = $conn->query("SELECT p.title, p.description FROM projects p, project_to_user ptu  where ptu.user_id='$userid' and ptu.project_id=p.id " );
+$result = $conn->query("SELECT p.title, p.description FROM task t, task_to_subtask tts  where ptu.user_id='$userid' and ptu.project_id=p.id " );
 while($row = $result->fetch_array(MYSQLI_ASSOC)) {
     $myArray[]=$row;
 }
