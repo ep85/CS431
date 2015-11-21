@@ -56,7 +56,7 @@ app.controller('DashboardController', function($scope, $http, $modal) {
         }, function () {
             console.log('Modal dismissed at: ' + new Date());
         });
-    }
+    };
 
     $scope.deleteProject = function(id) {
         $http({
