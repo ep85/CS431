@@ -25,7 +25,7 @@ if(!$conn) {
 
 $result = $conn->query("INSERT INTO subtask ( title ) VALUES ( '$title')" );
 $lastid=mysqli_insert_id($conn);
-$result = $conn->query("INSERT INTO task_to_subtask (task_id, subtask_id) VALUES ('$taskId', '$lastid', '1')" );
+$result = $conn->query("INSERT INTO task_to_subtask (task_id, subtask_id) VALUES ('$taskId', '$lastid')" );
 
 
 $conn->close();
