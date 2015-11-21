@@ -89,17 +89,17 @@ app.controller('TaskCtrl', function($scope, $routeParams, $http) {
     var projectId = $routeParams.projectId;
     $scope.tasks = [];
 
-    //$http({
-    //    method: 'POST',
-    //    url: 'php/gettasks.php',
-    //    data: {
-    //        projectId: projectId
-    //    }
-    //}).then(function(response) {
-    //
-    //}, function(err) {
-    //
-    //});
+    $http({
+       method: 'POST',
+        url: 'php/gettasks.php',
+         data: {
+           projectId: projectId
+       }
+    }).then(function(response) {
+    
+    }, function(err) {
+    
+    });
 
     var all = [
         {
