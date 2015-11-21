@@ -11,6 +11,7 @@
 
             <uib-accordion close-others="false">
                 <uib-accordion-group ng-repeat="project in projects track by $index" heading="{{project.title}}">
+                    <button class="btn btn-warning" ng-click="deleteProject(project.id)">Delete This Project</button>
                     <a href="#dashboard/{{project.id}}">Click here to view tasks</a>
                     <p>{{project.description}}</p>
                 </uib-accordion-group>
