@@ -12,7 +12,6 @@
             <uib-accordion close-others="false">
                 <uib-accordion-group ng-repeat="task in tasks track by $index" heading="{{task.title}}" ng-click="getSubTasks($index, task.id)">
                     <button class="btn btn-primary" ng-click="newSubTask($index, task.id)">Add sub tasks</button>
-                    <button class="btn btn-warning" ng-click="deleteTask(task.id)">Delete Task</button>
                     <p>{{task.description}}</p>
 
                     <ul>

@@ -199,7 +199,7 @@ app.controller('TaskCtrl', function($scope, $routeParams, $http, $modal) {
         }, function(err) {
             console.log(err);
         })
-    }
+    };
 
     $scope.getSubTasks = function(index, taskId) {
         $http({
