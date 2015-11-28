@@ -107,7 +107,7 @@ app.controller('NewProjectModalCtrl', function($scope, $http, $modalInstance) {
 app.controller('EditProjectModalCtrl', function($scope, $http, $modalInstance, project) {
     $scope.title = project.title;
     $scope.description = project.description;
-    console.log(project.id);
+
     $scope.update = function() {
         if (!$scope.title) return;
 
@@ -176,6 +176,25 @@ app.controller('TaskCtrl', function($scope, $routeParams, $http, $modal) {
             resolve: {
                 projectId: function() {
                     return projectId;
+                }
+            }
+        });
+
+        modalInstance.result.then(function () {
+            onLoad();
+        }, function () {
+            console.log('Modal dismissed at: ' + new Date());
+        });
+    };
+
+    $scope.editTask = function(task) {
+        var modalInstance = $modal.open({
+            animation: true,
+            templateUrl: 'editTaskModal.html',
+            controller: 'EditTaskModalCtrl',
+            resolve: {
+                task: function () {
+                    return task;
                 }
             }
         });
@@ -273,6 +292,54 @@ app.controller('NewSubTaskModalCtrl', function ($scope, $http, $modalInstance, t
             data: {
                 taskId: taskInfo.taskId,
                 title: $scope.title
+            }
+        }).then(function(response) {
+            console.log(response);
+        }, function(err) {
+            console.log(err);
+        });
+
+        $modalInstance.close();
+    };
+
+    $scope.cancel = function() {
+        $modalInstance.dismiss('cancel');
+    }
+});
+
+app.controller('EditTaskModalCtrl', function ($scope, $http, $modalInstance, task) {
+    $scope.title = task.title;
+    $scope.description = task.description;
+    $scope.subtasks = task.subtasks || [];
+    var oldSubTasks = angular.copy($scope.subtasks);
+
+    $scope.update = function() {
+        if (!$scope.title) return;
+        console.log(oldSubTasks);
+        $http({
+            method: 'POST',
+            url: 'php/updatetask.php',
+            data: {
+                taskId: task.id,
+                title: $scope.title,
+                description: $scope.description,
+                subtasks: $scope.subtasks,
+                oldsubtasks: oldSubTasks
+            }
+        }, function(response) {
+            console.log(response);
+        }, function(err) {
+            console.log(err);
+        });
+        $modalInstance.close();
+    };
+
+    $scope.deleteTask = function() {
+        $http({
+            method: 'POST',
+            url: 'php/editProject.php',
+            data: {
+                taskId: task.id
             }
         }).then(function(response) {
             console.log(response);
