@@ -41,6 +41,7 @@ app.controller('DashboardController', function($scope, $http, $modal) {
         }, function(err) {          //failure callback
             console.log(err);
         });
+
     }
 
     $scope.newProject = function(size) {
@@ -107,17 +108,27 @@ app.controller('NewProjectModalCtrl', function($scope, $http, $modalInstance) {
 app.controller('EditProjectModalCtrl', function($scope, $http, $modalInstance, project) {
     $scope.title = project.title;
     $scope.description = project.description;
-
+    console.log(project.id);
+    $http({
+            method: 'POST',
+            url: 'php/getpeople.php'
+        }).then(function(response) {    // success callback
+            console.log(response);
+            $scope.people = response.data;
+        }, function(err) {          //failure callback
+            console.log(err);
+        });
     $scope.update = function() {
         if (!$scope.title) return;
-
+        console.log(users)
         $http({
             method: 'POST',
             url: 'php/updateProject.php',
             data: {
                 projectId: project.id,
                 title: $scope.title,
-                description: $scope.description
+                description: $scope.description,
+                users: $scope.users
             }
         }, function(response) {
             console.log(response);
@@ -126,6 +137,7 @@ app.controller('EditProjectModalCtrl', function($scope, $http, $modalInstance, p
         });
         $modalInstance.close();
     };
+
 
     $scope.deleteProject = function() {
         $http({
