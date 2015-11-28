@@ -136,7 +136,10 @@ app.controller('EditProjectModalCtrl', function($scope, $http, $modalInstance, p
 
     $http({
         method: 'POST',
-        url: 'php/getpeople.php'
+        url: 'php/getpeople.php',
+        data: {
+            projectId: project.id
+        }
     }).then(function(response) {    // success callback
         console.log(response);
         $scope.people = response.data;
@@ -361,7 +364,6 @@ app.controller('EditTaskModalCtrl', function ($scope, $http, $modalInstance, tas
 
     $scope.update = function() {
         if (!$scope.title) return;
-        console.log(oldSubTasks);
         $http({
             method: 'POST',
             url: 'php/updatetask.php',
