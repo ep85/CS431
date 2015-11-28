@@ -54,17 +54,15 @@
             <label>Description</label>
             <textarea class="form-control" ng-model="description"></textarea>
         </div>
-        <div>
-            <form name="collaborators">
-                <h3>Collaborators</h3>
-                <div ng-repeat="person in people track by $index">
-                        <label>
-                            <input type="checkbox" checklist-model="users.checked" checklist-value="person.email" >
-                              {{person.email}}
-                        </label><br/>
-                </div>
-            </form>
 
+        <div class="form-group">
+            <h3>Collaborators</h3>
+            <div ng-repeat="person in people track by $index">
+                <label>
+                    <input type="checkbox" ng-model="person.selected">
+                    {{person.email}}
+                </label><br/>
+            </div>
         </div>
     </div>
     
