@@ -19,7 +19,7 @@ $request=json_decode($postdata);
 
 $conn = new mysqli($server, $user, $datapassword, $database);
 $check= $conn->query("SELECT email from user where email='$username'");
-if($check !=NULL){
+if($check !==NULL){
 	echo "USER ALREADY EXISTS";
 }
 else{
