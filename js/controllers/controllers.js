@@ -43,7 +43,7 @@ app.controller('RegisterCtrl', function($scope, $http, $location) {
             console.log(response);
             $scope.message = response.data;
 
-            if ($scope.message === 'true') {
+            if ($scope.message === 'SUCCESS USER CREATED') {
                 $location.path('/login');
             }
         }, function (err) {          //failure callback
