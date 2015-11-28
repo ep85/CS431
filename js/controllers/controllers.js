@@ -385,7 +385,7 @@ app.controller('EditTaskModalCtrl', function ($scope, $http, $modalInstance, tas
     $scope.deleteTask = function() {
         $http({
             method: 'POST',
-            url: 'php/editProject.php',
+            url: 'php/deletetask.php',
             data: {
                 taskId: task.id
             }
