@@ -27,6 +27,30 @@ app.controller('LoginCtrl', function($scope, $http, $location) {
         })
     }
 });
+
+app.controller('RegisterCtrl', function($scope, $http, $location) {
+
+    $scope.submit = function() {
+        // HTTP Post
+        $http({
+            method: 'POST',
+            url: 'php/register.php',
+            data: {
+                username: $scope.username,
+                password: $scope.password
+            }
+        }).then(function(response) {    // success callback
+            console.log(response);
+            $scope.message = response.data;
+
+            if ($scope.message === 'true') {
+                $location.path('/login');
+            }
+        }, function(err) {          //failure callback
+            console.log(err);
+        })
+    }
+
 app.controller('DashboardController', function($scope, $http, $modal) {
 
     onLoad();
