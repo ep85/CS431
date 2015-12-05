@@ -1,9 +1,6 @@
 <?php
 
-$server="localhost";
-$user="user1";
-$datapassword="password";
-$database="taskmanagement";
+include 'config_database.php';
 
 $myArray=array();
 session_start();
@@ -16,11 +13,6 @@ $username=$_SESSION["user"];
 $userid=$_SESSION["userid"];
 
 
-$conn = new mysqli($server, $user, $datapassword, $database);
-if(!$conn) {
-	echo "error";
-	exit;
-}
 
 $result = $conn->query("SELECT s.id, s.title FROM subtask s, task_to_subtask tts  where tts.task_id='$taskId' and tts.subtask_id=s.id " );
 while($row = $result->fetch_array(MYSQLI_ASSOC)) {

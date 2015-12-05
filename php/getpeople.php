@@ -1,9 +1,6 @@
 <?php
+include 'config_database.php';
 
-$server="localhost";
-$user="user1";
-$datapassword="password";
-$database="taskmanagement";
 $myArray=array();
 $newresult=array();
 session_start();
@@ -11,16 +8,10 @@ $username=$_SESSION["user"];
 $userid=$_SESSION["userid"];
 
 
-
 $postdata= file_get_contents("php://input");
 $request=json_decode($postdata);
 @$projectId=$request->projectId;
 
-$conn = new mysqli($server, $user, $datapassword, $database);
-if(!$conn) {
-	echo "error";
-	exit;
-}
 
 $result = $conn->query("SELECT  * FROM  user, project_to_user p where id <> '$userid' and p.project_id='$projectId' and user.id=p.user_id" );
  while($row = $result->fetch_array(MYSQLI_ASSOC)) {

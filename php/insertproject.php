@@ -1,9 +1,5 @@
 <?php
-
-$server="localhost";
-$user="user1";
-$datapassword="password";
-$database="taskmanagement";
+include 'config_database.php';
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -18,11 +14,6 @@ $request=json_decode($postdata);
 @$title= $request->title;
 @$description=$request->description;
 
-$conn = new mysqli($server, $user, $datapassword, $database);
-if(!$conn) {
-	echo "error";
-	exit;
-}
 
 $result = $conn->query("INSERT INTO projects (title, description) VALUES ('$title', '$description')" );
 $lastid=mysqli_insert_id($conn);

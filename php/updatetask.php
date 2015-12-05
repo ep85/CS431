@@ -1,9 +1,6 @@
 <?php
 
-$server="localhost";
-$user="user1";
-$datapassword="password";
-$database="taskmanagement";
+include 'config_database.php';
 
 $myArray=array();
 session_start();
@@ -18,11 +15,6 @@ $request=json_decode($postdata);
 @$subtasks = $request->subtasks;
 
 
-$conn = new mysqli($server, $user, $datapassword, $database);
-if(!$conn) {
-    echo "error";
-    exit;
-}
 
 $result = $conn->query("UPDATE task SET title='$title', description='$description' where id='$taskId'" );
 

@@ -1,9 +1,6 @@
 <?php
 
-$server="localhost";
-$user="user1";
-$datapassword="password";
-$database="taskmanagement";
+include 'config_database.php';
 
 $myArray=array();
 session_start();
@@ -17,7 +14,6 @@ $request=json_decode($postdata);
 @$password=$request->password;
 
 
-$conn = new mysqli($server, $user, $datapassword, $database);
 $check= $conn->query("SELECT email from user where email='$username'");
 $check = $check->fetch_array(MYSQLI_ASSOC);
 if($check['email'] == $username){

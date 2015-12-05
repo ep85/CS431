@@ -1,9 +1,5 @@
 <?php
-
-$server="localhost";
-$user="user1";
-$datapassword="password";
-$database="taskmanagement";
+include 'config_database.php';
 
 $myArray=array();
 session_start();
@@ -17,7 +13,6 @@ $request=json_decode($postdata);
 @$password=$request->password;
 
 
-$conn = new mysqli($server, $user, $datapassword, $database);
 
 if($result = $conn->query("SELECT email, password, id FROM user where email='$username'")){
 	$row = $result->fetch_array(MYSQLI_ASSOC);

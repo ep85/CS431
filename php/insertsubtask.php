@@ -1,9 +1,6 @@
 <?php
 
-$server="localhost";
-$user="user1";
-$datapassword="password";
-$database="taskmanagement";
+include 'config_database.php';
 
 session_start();
 $username=$_SESSION["user"];
@@ -14,11 +11,6 @@ $request=json_decode($postdata);
 @$title= $request->title;
 @$taskId=$request->taskId;
 
-$conn = new mysqli($server, $user, $datapassword, $database);
-if(!$conn) {
-	echo "error";
-	exit;
-}
 
 $result = $conn->query("INSERT INTO subtask ( title ) VALUES ( '$title')" );
 $lastid=mysqli_insert_id($conn);
