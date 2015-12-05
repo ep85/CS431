@@ -21,18 +21,12 @@ if(!$conn) {
 	echo "error";
 	exit;
 }
-
-$result = $conn->query("UPDATE projects SET title='$title', description='$description' where id='$projectId'" );
-
 $result = $conn->query("DELETE FROM project_to_user where project_id='$projectId' and owner=0" );
 foreach($people as $person){
 
 	$result = $conn->query("INSERT INTO project_to_user (project_id, user_id, owner) VALUES ( '$projectId' ,'$person', '0')" );
 	
 }
-$conn->close();
-
-
 
 
 

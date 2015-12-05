@@ -143,6 +143,13 @@ app.controller('EditProjectModalCtrl', function($scope, $http, $modalInstance, p
     }).then(function(response) {    // success callback
         console.log(response);
         $scope.people = response.data;
+        for(var i=0; i<$scope.people.length; i++){
+            
+            if($scope.people[i].owner==0){
+                $scope.people[i].selected=true;
+            }
+            
+        }
     }, function(err) {          //failure callback
         console.log(err);
     });

@@ -58,10 +58,14 @@
         <div class="form-group">
             <h3>Collaborators</h3>
             <div ng-repeat="person in people track by $index">
-                <label>
-                    <input type="checkbox" ng-model="person.selected">
-                    {{person.email}}
-                </label><br/>
+               
+                    <label>
+                        <input type="checkbox" ng-model="person.selected" >
+                         
+                                {{person.email}}
+                         
+                    </label><br/>
+              
             </div>
         </div>
     </div>
