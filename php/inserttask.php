@@ -23,7 +23,7 @@ if(!$conn) {
 
 $result = $conn->query("INSERT INTO task (project_id, title, description) VALUES ( '$projectId' ,'$title', '$description')" );
 
-
+echo "done";
 
 $conn->close();
 
