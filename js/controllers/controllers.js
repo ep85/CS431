@@ -216,8 +216,12 @@ app.controller('TaskCtrl', function($scope, $routeParams, $http, $modal) {
                 projectId: projectId
             }
         }).then(function(response) {
-            console.log(response);
             $scope.tasks = response.data;
+
+            for (var i = 0; i< $scope.tasks.length; i++) {
+                var task = $scope.tasks[i];
+                $scope.getSubTasks(i, task.id);
+            }
         }, function(err) {
             console.log(err);
         });
@@ -243,7 +247,7 @@ app.controller('TaskCtrl', function($scope, $routeParams, $http, $modal) {
         });
     };
 
-    $scope.editTask = function(task) {
+    $scope.editTask = function(index, task) {
         var modalInstance = $modal.open({
             animation: true,
             templateUrl: 'editTaskModal.html',
@@ -366,8 +370,8 @@ app.controller('NewSubTaskModalCtrl', function ($scope, $http, $modalInstance, t
 app.controller('EditTaskModalCtrl', function ($scope, $http, $modalInstance, task) {
     $scope.title = task.title;
     $scope.description = task.description;
-    $scope.subtasks = task.subtasks || [];
-    var oldSubTasks = angular.copy($scope.subtasks);
+    $scope.subtasks = angular.copy(task.subtasks) || [];
+    //var oldSubTasks = angular.copy($scope.subtasks);
 
     $scope.update = function() {
         if (!$scope.title) return;
@@ -379,7 +383,7 @@ app.controller('EditTaskModalCtrl', function ($scope, $http, $modalInstance, tas
                 title: $scope.title,
                 description: $scope.description,
                 subtasks: $scope.subtasks,
-                oldsubtasks: oldSubTasks
+                //oldsubtasks: oldSubTasks
             }
         }, function(response) {
             console.log(response);
