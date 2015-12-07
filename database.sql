@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:8889
--- Generation Time: Nov 21, 2015 at 10:20 PM
+-- Generation Time: Dec 05, 2015 at 10:34 PM
 -- Server version: 5.5.38
 -- PHP Version: 5.5.14
 
@@ -24,41 +24,16 @@ CREATE TABLE `projects` (
 `id` int(11) NOT NULL,
   `title` text NOT NULL,
   `description` text NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=30 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=45 ;
 
 --
 -- Dumping data for table `projects`
 --
 
 INSERT INTO `projects` (`id`, `title`, `description`) VALUES
-(1, 'grocery list', 'this is my grocery list'),
-(2, 'asd', 'asd'),
-(4, 'asd', 'asd'),
-(5, 'asdaaosdjopasjd', 'asdopasjdopasjd'),
-(6, '213asd', 'asdasdasd'),
-(7, '1123213asd', 'asd'),
-(8, 'asdasd', '123123'),
-(9, 'asd', 'asd'),
-(10, '', ''),
-(11, 'ads', 'asd'),
-(12, 'adsdd', 'asdff'),
-(13, 'asd', 'asd'),
-(14, 'asd', 'asd'),
-(15, 'asd', 'asd'),
-(16, 'asd', 'asd'),
-(17, 'asd', 'asd'),
-(18, 'asd', 'asd'),
-(19, 'asd', 'asd'),
-(20, 'asd', 'asd'),
-(21, 'asd', 'asd'),
-(22, 'asd', 'asd'),
-(23, 'asd', 'asd'),
-(24, 'asd', 'asd'),
-(25, 'asd', 'asd'),
-(26, 'asd', 'asd'),
-(27, 'asd', 'asd'),
-(28, 'asd', 'asd'),
-(29, 'asd', 'asd');
+(42, 'knklnl', 'nlnlkn'),
+(43, 'grocery', 'my gro'),
+(44, 'zd', 'zsd');
 
 -- --------------------------------------------------------
 
@@ -77,42 +52,10 @@ CREATE TABLE `project_to_user` (
 --
 
 INSERT INTO `project_to_user` (`project_id`, `user_id`, `owner`) VALUES
-(1, 1, 0),
-(0, 0, 1),
-(0, 0, 1),
-(0, 0, 1),
-(0, 0, 1),
-(0, 0, 1),
-(0, 0, 1),
-(0, 0, 1),
-(0, 0, 1),
-(0, 0, 1),
-(0, 0, 1),
-(0, 0, 1),
-(0, 0, 1),
-(0, 0, 1),
-(0, 0, 1),
-(0, 0, 1),
-(0, 0, 1),
-(0, 0, 1),
-(0, 0, 1),
-(0, 0, 1),
-(0, 0, 1),
-(0, 0, 1),
-(0, 0, 1),
-(0, 0, 1),
-(0, 1, 1),
-(0, 1, 1),
-(0, 1, 1),
-(0, 1, 1),
-(21, 1, 1),
-(22, 1, 1),
-(0, 1, 1),
-(0, 1, 1),
-(0, 1, 1),
-(0, 1, 1),
-(0, 1, 1),
-(0, 1, 1);
+(42, 1, 1),
+(43, 1, 1),
+(44, 1, 1),
+(42, 3, 0);
 
 -- --------------------------------------------------------
 
@@ -123,7 +66,32 @@ INSERT INTO `project_to_user` (`project_id`, `user_id`, `owner`) VALUES
 CREATE TABLE `subtask` (
 `id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
+
+--
+-- Dumping data for table `subtask`
+--
+
+INSERT INTO `subtask` (`id`, `title`) VALUES
+(1, 'Give this group a 100'),
+(2, 'asd'),
+(3, 'DOne'),
+(4, 'asdasd'),
+(5, 'klmk'),
+(6, 'jnjn'),
+(7, 'nklkn'),
+(8, 'lkkl'),
+(9, 'lkmlkm'),
+(10, ',;m;m;lm;m'),
+(11, 'kmlm'),
+(12, 'mmkmkkm'),
+(13, 'kmmlkmlkm'),
+(14, 'mmlmlmlm'),
+(15, 'erewr'),
+(16, 'wer'),
+(17, 'kmklm'),
+(18, 'm m,'),
+(19, 'kmkm');
 
 -- --------------------------------------------------------
 
@@ -136,7 +104,19 @@ CREATE TABLE `task` (
   `project_id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `description` varchar(1000) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+
+--
+-- Dumping data for table `task`
+--
+
+INSERT INTO `task` (`id`, `project_id`, `title`, `description`) VALUES
+(2, 31, 'zczdf', 'dsfzdf'),
+(10, 43, 'zsd', 'zxc'),
+(11, 43, 'jknjk', ''),
+(12, 43, 'mlmlml', ', ,m'),
+(13, 42, 'asd', 'ad'),
+(14, 42, 'asd', 'asd');
 
 -- --------------------------------------------------------
 
@@ -149,6 +129,31 @@ CREATE TABLE `task_to_subtask` (
   `subtask_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `task_to_subtask`
+--
+
+INSERT INTO `task_to_subtask` (`task_id`, `subtask_id`) VALUES
+(3, 1),
+(3, 2),
+(3, 3),
+(4, 4),
+(7, 5),
+(7, 6),
+(7, 7),
+(7, 8),
+(7, 9),
+(7, 10),
+(7, 11),
+(7, 12),
+(7, 13),
+(7, 14),
+(6, 15),
+(6, 16),
+(10, 17),
+(10, 18),
+(10, 19);
+
 -- --------------------------------------------------------
 
 --
@@ -159,7 +164,7 @@ CREATE TABLE `user` (
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
 `id` int(11) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `user`
@@ -167,7 +172,9 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`email`, `password`, `id`) VALUES
 ('eric', '123', 1),
-('dustin', '123', 2);
+('dustin', '123', 2),
+('urvesh', '123', 3),
+('alexis', '123', 4);
 
 --
 -- Indexes for dumped tables
@@ -205,19 +212,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `projects`
 --
 ALTER TABLE `projects`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=30;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=45;
 --
 -- AUTO_INCREMENT for table `subtask`
 --
 ALTER TABLE `subtask`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `task`
 --
 ALTER TABLE `task`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
